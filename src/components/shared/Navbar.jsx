@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Navbar = () => {
     return (
-        <div>
+        <div className="sticky top-0 z-50 bg-[#0F1115]">
             <div className='flex justify-between my-4 mx-9'>
                 <div className='flex justify-between gap-4'>
                     <Image src={logo} width={100} height={100} className='h-auto w-auto' alt='logo icon'></Image>
@@ -13,7 +13,7 @@ const Navbar = () => {
                 </div>
 
                 <div className='flex justify-between gap-4 text-[#9CA3AF]'>
-                    <Link href={'/library'}>Workouts</Link>
+                    <Link href={'/'}>Workouts</Link>
                     <Link href={'/myplan'}>My Plan</Link>
                 </div>
 
