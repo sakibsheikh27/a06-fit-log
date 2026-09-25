@@ -8,7 +8,7 @@ const Footer = () => {
             <hr className="mt-6 border-[#3D3F45]" />
             <div className='flex justify-between items-center mx-9 my-9'>
                 <div className=' flex justify-between items-center gap-2 font-bold'>
-                    <Image className='w-[15px] font-bold' src={FooterLogo} alt={'Footer Image'}></Image>
+                    <Image className='w-fit font-bold' src={FooterLogo} alt={'Footer Image'}></Image>
                     <p className='text-white'>FitLog</p>
                 </div>
                     

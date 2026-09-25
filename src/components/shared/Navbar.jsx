@@ -7,7 +7,7 @@ const Navbar = () => {
         <div>
             <div className='flex justify-between my-4 mx-9'>
                 <div className='flex justify-between gap-4'>
-                    <Image src={logo} alt='logo icon'></Image>
+                    <Image src={logo} width={100} height={100} className='h-auto w-auto' alt='logo icon'></Image>
                     <h2 className='font-bold text-2xl text-white'>FITLOG</h2>
                 </div>
 
