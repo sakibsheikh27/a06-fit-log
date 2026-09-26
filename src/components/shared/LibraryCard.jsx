@@ -14,7 +14,7 @@ const LibraryCard = ({ library }) => {
                         alt='Library Image' 
                         width={600}
                         height={100}
-                        className='w-full h-[220px] object-cover rounded-t-2xl'
+                        className='w-full h-55 object-cover rounded-t-2xl'
                     ></Image>
                 </div>
 

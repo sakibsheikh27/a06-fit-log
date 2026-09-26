@@ -3,6 +3,8 @@ import React from 'react';
 import { BiSave } from 'react-icons/bi';
 import { MdOutlineCalendarToday } from 'react-icons/md';
 import { Oswald } from 'next/font/google';
+import MyPlanButton from '@/components/shared/detailsPage/MyPlanButton';
+import SavedButton from '@/components/shared/detailsPage/SavedButton';
 
 
 const oswald = Oswald({
@@ -18,14 +20,14 @@ const LibraryDetailsPage = async({params}) => {
     return (
         <div className='text-white flex justify-center gap-10 mx-70 my-10'>
             <div>
-                <Image className='h-[600px] w-[700px] rounded-2xl' src={library.image} width={300} height={200} alt={`${library.name} Image`}></Image>
+                <Image className='h-150 w-175 rounded-2xl' src={library.image} width={300} height={200} alt={`${library.name} Image`}></Image>
             </div>
             <div className='container max-w-full'>
                 <h2 className={`${oswald.className} text-3xl font-bold`}>{library.name}</h2>
                 <p className='text-sm text-[#9CA3AF] mt-1 mb-3'>{library.description}</p>
                 {library.muscleGroups.map((muscle) => ( 
                         <span key={muscle} 
-                        className="bg-[#C2F800] text-black font-bold px-2 py-0.5 rounded-full text-sm" 
+                        className="bg-[#C2F800] text-black font-medium px-2 py-0.5 rounded-full text-sm" 
                         > {muscle} 
                         </span> ))}
                  <table className="text-sm text-[#9CA3AF] w-full my-3 border border-[#3D3F45] rounded-xl overflow-hidden bg-[#151922]">
@@ -74,8 +76,8 @@ const LibraryDetailsPage = async({params}) => {
                     ))}
                 </ol>     
                 <div className='flex gap-6 my-4'>
-                    <button className='flex items-center gap-1 bg-[#C2F800] text-black font-medium px-4 py-2 rounded-xl cursor-pointer'>{<MdOutlineCalendarToday />} <span>Add to today&apos;s plan</span></button>
-                    <button className='flex items-center gap-1 bg-[#C2F800] text-black font-medium px-4 py-2 rounded-xl cursor-pointer'>{<BiSave />} <span>Save for later</span></button>
+                    <MyPlanButton library={library}></MyPlanButton>
+                    <SavedButton library={library}></SavedButton>
                 </div>
                 
             </div>
