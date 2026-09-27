@@ -15,7 +15,7 @@ const oswald = Oswald({
 const LibraryDetailsPage = async({params}) => {
     const {libraryId} = await params;
 
-    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${libraryId}`);
+    const res = await fetch(`https://api.api-store.workers.dev/api/fitlog/${libraryId}`);
     const library = await res.json();
     return (
         <div className='text-white flex justify-center gap-10 mx-70 my-10'>

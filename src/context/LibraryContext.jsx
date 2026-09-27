@@ -14,6 +14,7 @@ const LibraryProvider = ({ children }) => {
         workoutSaved,
         setWorkoutSaved,
     };
+
     return (<LibraryContext.Provider value={shareData}>{children}</LibraryContext.Provider>);
 };
 

@@ -7,8 +7,11 @@ const oswald = Oswald({
 })
 
 const getLibrary = async() => {
-    const res = await fetch('https://api.abcz.workers.dev/api/fitlog');
+    const res = await fetch('https://api.api-store.workers.dev/api/fitlog');
     const data = await res.json();
+     if (!res.ok) {
+        throw new Error(`API Error: ${res.status}`);
+    }
     return data;
 }
 const Library = async() => {
