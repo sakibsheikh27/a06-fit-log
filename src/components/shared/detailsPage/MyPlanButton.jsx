@@ -7,13 +7,17 @@ import { toast } from 'react-toastify';
 
 const MyPlanButton = ({ library }) => {
     const { workoutPlan, setWorkoutPlan } = useContext(LibraryContext);
+    const [isAdded, setIsAdded] = useState(false);
     const handleMyPlan = () => {
         setWorkoutPlan([...workoutPlan, library]);
+        setIsAdded(true);
         toast.success('Added to today plan');
     }
     return (
         <div>
-            <button className='flex items-center gap-1 bg-[#C2F800] text-black font-medium px-4 py-2 rounded-xl cursor-pointer'
+            <button 
+                disabled={isAdded}
+                className='flex items-center gap-1 bg-[#C2F800] text-black font-medium px-4 py-2 rounded-xl cursor-pointer'
                 onClick={() => handleMyPlan()}>
                 {<MdOutlineCalendarToday />} <span>Add to today&apos;s plan</span>
             </button>

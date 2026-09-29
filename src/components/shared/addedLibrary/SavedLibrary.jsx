@@ -7,6 +7,7 @@ import React, { useContext, useState } from 'react';
 import { FaFire, FaRegStar } from 'react-icons/fa';
 import { IoTimeOutline } from 'react-icons/io5';
 import { RxCross2 } from 'react-icons/rx';
+import { toast } from 'react-toastify';
 
 const SavedLibrary = () => {
     const {workoutPlan, workoutSaved, setWorkoutSaved} = useContext(LibraryContext);
@@ -14,10 +15,12 @@ const SavedLibrary = () => {
         
     const handleMarkDone = (id) =>{
         setMarkId([...markedId, id]);
+        toast('Mark as Done');
     };
 
     const handleDelete = (id) => {
-        setWorkoutSaved(workoutPlan.filter(card => card.id !== id));
+        setWorkoutSaved(workoutSaved.filter(card => card.id !== id));
+        toast.success('Successfully Deleted');
     };
     return (
         <div>
