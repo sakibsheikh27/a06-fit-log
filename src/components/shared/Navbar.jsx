@@ -1,9 +1,15 @@
+"use client";
+
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '@/assets/logo.png'
 import Link from 'next/link';
+import { LibraryContext } from '@/context/LibraryContext';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
+    const {workoutPlan, workoutSaved} = useContext(LibraryContext);
+    const pathname = usePathname();
     return (
         <div className="sticky top-0 z-50 bg-[#0F1115]">
             <div className='flex justify-between my-4 mx-9'>
@@ -13,13 +19,22 @@ const Navbar = () => {
                 </div>
 
                 <div className='flex justify-between gap-4 text-[#9CA3AF]'>
-                    <Link href={'/'}>Workouts</Link>
-                    <Link href={'/myplan'}>My Plan</Link>
+                    <Link
+                        href={'/'}
+                        className={pathname === "/" ? "text-[#C2F800] font-bold" : "text-[#9CA3AF]"}
+                        >Workouts
+                    </Link>
+                    <Link
+    href="/myplan"
+    className={pathname === "/myplan" ? "text-[#C2F800] font-bold" : "text-[#9CA3AF]"}
+>
+    My Plan
+</Link>
                 </div>
 
                 <div className='flex justify-between gap-4 text-[#9CA3AF]'>
-                    <p>Plan</p>
-                    <p>Saved</p>
+                    <p>Plan <span className='border border-black bg-[#C2F800] text-black px-1.5 rounded-full font-medium'>{workoutPlan.length}</span></p>
+                    <p>Saved <span className='border border-[#9CA3AF]  px-1.5 rounded-full font-medium'>{workoutSaved.length}</span></p>
                 </div>
             </div>
             <hr className="mt-6 border-[#3D3F45]" />

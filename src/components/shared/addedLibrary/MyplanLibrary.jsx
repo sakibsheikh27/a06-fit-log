@@ -2,13 +2,22 @@
 
 import { LibraryContext } from '@/context/LibraryContext';
 import Image from 'next/image';
-import React, { useContext } from 'react';
+import Link from 'next/link';
+import React, { useContext, useState } from 'react';
 import { FaFire, FaRegStar } from 'react-icons/fa';
 import { IoTimeOutline } from 'react-icons/io5';
+import { RxCross2 } from 'react-icons/rx';
 
 const MyplanLibrary = () => {
-    const {workoutPlan, workoutSaved} = useContext(LibraryContext);
-    console.log('workout plan', workoutPlan)
+    const {workoutPlan, workoutSaved, setWorkoutPlan} = useContext(LibraryContext);
+    const [markedId, setMarkId] = useState([]);
+    const handleMarkDone = (id) =>{
+        setMarkId([...markedId, id]);
+    };
+
+    const handleDelete = (id) => {
+        setWorkoutPlan(workoutPlan.filter(card => card.id !== id));
+    };
     return (
         <div>
             <div className='text-white'>
@@ -35,8 +44,27 @@ const MyplanLibrary = () => {
                                 </div>
                             </div>
                             <div className=''>
-                                <button className='border border-[#9CA3AF] rounded-full bg-[#14171E] text-md py-1.5 px-3 mx-4 '>View Details</button>
-                                <button className='border border-[#9CA3AF] rounded-full bg-[#C2F800] text-md py-1.5 px-3 mx- font-medium text-black'>Mark as Done</button>
+                                <Link 
+                                    href={`/library/${card.id}`} 
+                                    className='border border-[#9CA3AF] rounded-full bg-[#14171E] text-md py-1.5 px-3 mx-4 '
+                                    >
+                                    View Details
+                                </Link>
+                                <button 
+                                    onClick={() => handleMarkDone(card.id)}
+                                    className={`border border-[#9CA3AF] rounded-full text-md py-1.5 px-3 font-medium text-black ${
+                                    markedId.includes(card.id)
+                                        ? 'bg-green-500'
+                                        : 'bg-[#C2F800]'
+                                    }`}
+                                    >
+                                    {markedId.includes(card.id) ? `Mark as Done` : 'Mark as Done'}
+                                    </button>
+                                <button 
+                                    onClick={() => handleDelete(card.id)}
+                                    className=' mx-3 hover:text-red-500 text-xl'
+                                    ><RxCross2 />
+                                </button>
                             </div>
                         </div>
                     )

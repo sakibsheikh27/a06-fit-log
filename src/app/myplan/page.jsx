@@ -3,6 +3,7 @@
 import MyplanLibrary from '@/components/shared/addedLibrary/MyplanLibrary';
 import SavedLibrary from '@/components/shared/addedLibrary/SavedLibrary';
 import { LibraryContext } from '@/context/LibraryContext';
+import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 
 const MyPlanPage = () => {
@@ -84,7 +85,7 @@ const MyPlanPage = () => {
                 <div className='text-center w-full my-10 p-15 border border-dashed border-[#3D3F45] rounded-2xl'>
                 <h2 className='text-3xl font-medium'>NOTHING HERE YET</h2>
                 <p className='text-sm text-[#9CA3AF] m-5'>Browse the library and add a lift to get today moving.</p>
-                <button className='bg-[#C2F800] text-black font-medium px-4 py-2 rounded-full cursor-pointer'>Go to workouts</button>
+                <Link href={'/'}><button className='bg-[#C2F800] text-black font-medium px-4 py-2 rounded-full cursor-pointer'>Go to workouts</button></Link>
             </div>
             )}
             
