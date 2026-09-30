@@ -1,5 +1,3 @@
-
-
 import { LibraryContext } from '@/context/LibraryContext';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,10 +8,10 @@ import { RxCross2 } from 'react-icons/rx';
 import { toast } from 'react-toastify';
 
 const SavedLibrary = () => {
-    const {workoutPlan, workoutSaved, setWorkoutSaved} = useContext(LibraryContext);
+    const { workoutSaved, setWorkoutSaved, sortBy } = useContext(LibraryContext);
     const [markedId, setMarkId] = useState([]);
-        
-    const handleMarkDone = (id) =>{
+
+    const handleMarkDone = (id) => {
         setMarkId([...markedId, id]);
         toast('Mark as Done');
     };
@@ -22,59 +20,106 @@ const SavedLibrary = () => {
         setWorkoutSaved(workoutSaved.filter(card => card.id !== id));
         toast.success('Successfully Deleted');
     };
+
+    const sortByWorkout = (workout) => {
+        const sortedWorkout = [...workout];
+
+        if (sortBy === 'duration') {
+            sortedWorkout.sort((a, b) => b.duration - a.duration);
+        } else if (sortBy === 'calories') {
+            sortedWorkout.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+        } else if (sortBy === 'rating') {
+            sortedWorkout.sort((a, b) => b.rating - a.rating);
+        }
+
+        return sortedWorkout;
+    };
+
+    const sortedWorkoutPlan = sortByWorkout(workoutSaved);
+
     return (
-        <div>
-                    <div className='text-white'>
-                        {workoutSaved.map(card => {
-                            return (
-                                <div key={card.id} className='text-white flex justify-between items-center my-4 p-3 bg-[#13161D] border border-[#3D3F45] rounded-xl'>
-                                    <div className='flex gap-4'>
-                                        <Image src={card.image}
-                                        alt='Library Image' 
-                                        width={600}
-                                        height={100}
-                                        className='w-32.5 h-17.5 object-cover rounded-xl'></Image>
-                                    
-                                        <div className=''>
-                                            <h2 className='text-xl font-medium text-left'>{card.name}</h2>
-                                            <p className='text-sm text-[#9CA3AF] text-left'>{card.equipment}</p>
-                                            <div className='text-sm text-[#9CA3AF] flex gap-2'>
-                                                <p className='flex items-center gap-1'><span><IoTimeOutline /></span><span>{card.duration}</span><span>min</span></p>
-                                                <p className='flex items-center gap-1'><span><FaFire /></span><span>{card.caloriesBurned}</span><span>kcal</span></p>
-                                                <p className='flex items-center'><span><FaRegStar /></span><span>{card.rating}</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className=''>
-                                        <Link
-                                            href={`/library/${card.id}`} 
-                                            className='border border-[#9CA3AF] rounded-full bg-[#14171E] text-md py-1.5 px-3 mx-4 '
-                                            >
-                                            View Details
-                                        </Link>
-                                        <button 
-                                    onClick={() => handleMarkDone(card.id)}
-                                    className={`border border-[#9CA3AF] rounded-full text-md py-1.5 px-3 font-medium text-black ${
-                                    markedId.includes(card.id)
-                                        ? 'bg-green-500'
-                                        : 'bg-[#C2F800]'
-                                    }`}
-                                    >
-                                    {markedId.includes(card.id) ? `Mark as Done` : 'Mark as Done'}
-                                    </button>
-                                        <button 
-                                        onClick={() => handleDelete(card.id)}
-                                        className=' mx-3 hover:text-red-500 text-xl'
-                                            ><RxCross2 />
-                                        </button>
+        <div className="w-full">
+            <div className="text-white">
+                {sortedWorkoutPlan.map(card => {
+                    const isMarked = markedId.includes(card.id);
+
+                    return (
+                        <div
+                            key={card.id}
+                            className={`my-4 flex flex-col gap-4 rounded-xl border border-[#3D3F45] p-3 sm:flex-row sm:items-center sm:justify-between ${
+                                isMarked ? 'bg-green-950/30' : 'bg-[#13161D]'
+                            }`}
+                        >
+                            {/* Left side */}
+                            <div className="flex min-w-0 gap-3 sm:gap-4">
+                                <Image
+                                    src={card.image}
+                                    alt="Library Image"
+                                    width={600}
+                                    height={100}
+                                    className="h-17.5 w-24 shrink-0 rounded-xl object-cover sm:w-32.5"
+                                />
+
+                                <div className="min-w-0">
+                                    <h2 className="truncate text-base font-medium sm:text-xl">
+                                        {card.name}
+                                    </h2>
+
+                                    <p className="truncate text-sm text-[#9CA3AF]">
+                                        {card.equipment}
+                                    </p>
+
+                                    <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[#9CA3AF] sm:text-sm">
+                                        <p className="flex items-center gap-1">
+                                            <IoTimeOutline />
+                                            <span>{card.duration} min</span>
+                                        </p>
+
+                                        <p className="flex items-center gap-1">
+                                            <FaFire />
+                                            <span>{card.caloriesBurned} kcal</span>
+                                        </p>
+
+                                        <p className="flex items-center gap-1">
+                                            <FaRegStar />
+                                            <span>{card.rating}</span>
+                                        </p>
                                     </div>
                                 </div>
-                            )
-                        })}
-                        
-                    </div>
-                    
-                </div>
+                            </div>
+
+                            {/* Right side */}
+                            <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:flex-nowrap">
+                                <Link
+                                    href={`/library/${card.id}`}
+                                    className="flex-1 whitespace-nowrap rounded-full border border-[#9CA3AF] bg-[#14171E] px-3 py-1.5 text-center text-sm sm:flex-none"
+                                >
+                                    View Details
+                                </Link>
+
+                                <button
+                                    onClick={() => handleMarkDone(card.id)}
+                                    className={`flex-1 whitespace-nowrap rounded-full border border-[#9CA3AF] px-3 py-1.5 text-sm font-medium text-black sm:flex-none ${
+                                        isMarked
+                                            ? 'bg-green-500'
+                                            : 'bg-[#C2F800]'
+                                    }`}
+                                >
+                                    Mark as Done
+                                </button>
+
+                                <button
+                                    onClick={() => handleDelete(card.id)}
+                                    className="rounded-full p-2 text-xl hover:text-red-500"
+                                >
+                                    <RxCross2 />
+                                </button>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
     );
 };
 

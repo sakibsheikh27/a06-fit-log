@@ -7,12 +7,16 @@ export const LibraryContext = createContext({});
 const LibraryProvider = ({ children }) => {
     const [workoutPlan, setWorkoutPlan] = useState([]);
     const [workoutSaved, setWorkoutSaved] = useState([]);
+    const [sortBy, setSortBy] = useState('duration');
+    
 
     const shareData = {
         workoutPlan,
         setWorkoutPlan,
         workoutSaved,
         setWorkoutSaved,
+        sortBy,
+        setSortBy
     };
 
     return (<LibraryContext.Provider value={shareData}>{children}</LibraryContext.Provider>);

@@ -20,8 +20,10 @@ const Library = async() => {
             <div className='mx-9 mb-6'>
             <h2 className={`${oswald.className} text-white text-3xl font-bold`}>THE LIBRARY</h2>
             <p className='text-[#9CA3AF] mb-9'>Twelve lifts covering every major muscle group.</p>
-            <div className='grid grid-cols-3 gap-9'>
-                {librariesData.map(library => <LibraryCard key={library.id} library={library}></LibraryCard>)}
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-9'>
+                {librariesData.map(library => (
+                    <LibraryCard key={library.id} library={library} />
+                ))}
             </div>
         </div>
         </div>
