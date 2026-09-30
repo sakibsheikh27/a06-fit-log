@@ -59,7 +59,7 @@ const MyPlanPage = () => {
                 <div className='flex gap-2 sm:gap-3 bg-[#13161D] py-2 px-2 sm:px-3 border border-[#3D3F45] rounded-xl w-fit'>
                     <button
                         onClick={() => handleUpdatebtnType('todayPlan')}
-                        className={`text-xs sm:text-sm btn ${
+                        className={`text-xs bg-[#3D3F45] sm:text-sm btn ${
                             activeBtn === 'todayPlan' ? 'btn-success' : ''
                         } text-white cursor-pointer`}
                     >
@@ -68,7 +68,7 @@ const MyPlanPage = () => {
 
                     <button
                         onClick={() => handleUpdatebtnType('saved')}
-                        className={`text-xs sm:text-sm btn ${
+                        className={`text-xs bg-[#3D3F45] sm:text-sm btn ${
                             activeBtn === 'saved' ? 'btn-success' : ''
                         } text-white cursor-pointer`}
                     >
