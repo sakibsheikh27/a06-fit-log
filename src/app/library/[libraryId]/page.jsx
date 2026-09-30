@@ -19,7 +19,6 @@ const LibraryDetailsPage = async ({ params }) => {
     return (
         <div className="text-white flex flex-col lg:flex-row justify-center gap-6 lg:gap-10 mx-4 sm:mx-8 lg:mx-16 xl:mx-24 2xl:mx-32 my-6 lg:my-10">
 
-            {/* Image */}
             <div className="w-full lg:w-1/2">
                 <Image
                     className="h-auto w-full max-h-[600px] object-cover rounded-2xl"
@@ -30,7 +29,6 @@ const LibraryDetailsPage = async ({ params }) => {
                 />
             </div>
 
-            {/* Details */}
             <div className="w-full lg:w-1/2">
 
                 <h2
@@ -43,7 +41,6 @@ const LibraryDetailsPage = async ({ params }) => {
                     {library.description}
                 </p>
 
-                {/* Muscle Groups */}
                 <div className="flex flex-wrap gap-2">
                     {library.muscleGroups.map((muscle) => (
                         <span
@@ -55,7 +52,6 @@ const LibraryDetailsPage = async ({ params }) => {
                     ))}
                 </div>
 
-                {/* Details Table */}
                 <div className="overflow-x-auto">
                     <table className="text-sm text-[#9CA3AF] w-full my-3 border border-[#3D3F45] rounded-xl overflow-hidden bg-[#151922]">
                         <tbody>
@@ -101,7 +97,6 @@ const LibraryDetailsPage = async ({ params }) => {
                     </table>
                 </div>
 
-                {/* Instructions */}
                 <h2 className="my-3 font-semibold">INSTRUCTIONS</h2>
 
                 <ol className="list-decimal ml-5 space-y-2">
@@ -115,7 +110,7 @@ const LibraryDetailsPage = async ({ params }) => {
                     ))}
                 </ol>
 
-                {/* Buttons */}
+               
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 my-5">
                     <MyPlanButton library={library} />
                     <SavedButton library={library} />
