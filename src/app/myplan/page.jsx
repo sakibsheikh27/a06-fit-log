@@ -55,9 +55,7 @@ const MyPlanPage = () => {
                 </div>
             </div>
 
-            {/* Tabs + Sort */}
             <div className='flex flex-col gap-4 md:flex-row md:justify-between md:items-center'>
-                {/* Tabs */}
                 <div className='flex gap-2 sm:gap-3 bg-[#13161D] py-2 px-2 sm:px-3 border border-[#3D3F45] rounded-xl w-fit'>
                     <button
                         onClick={() => handleUpdatebtnType('todayPlan')}
@@ -86,7 +84,7 @@ const MyPlanPage = () => {
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
-                        className='select select-success border border-[#3D3F45] w-full sm:w-auto bg-transparent text-white'
+                        className='select select-success border border-[#3D3F45] w-full sm:w-auto bg-[#13161D] text-white'
                     >
                         <option value='duration'>Duration</option>
                         <option value='calories'>Calories</option>
