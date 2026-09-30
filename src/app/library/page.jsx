@@ -7,7 +7,7 @@ const oswald = Oswald({
 })
 
 const getLibrary = async() => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`);
+    const res = await fetch('https://api.api-store.workers.dev/api/fitlog');
     const data = await res.json();
      if (!res.ok) {
         throw new Error(`API Error: ${res.status}`);
