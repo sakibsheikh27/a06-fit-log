@@ -78,7 +78,6 @@ const MyPlanPage = () => {
                     </button>
                 </div>
 
-                {/* Sort */}
                 <div className='flex items-center gap-3 w-full md:w-auto'>
                     <div className='text-sm text-[#9CA3AF]'>
                         Sort by
@@ -87,7 +86,7 @@ const MyPlanPage = () => {
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
-                        className='select select-success border border-[#3D3F45] w-full sm:w-auto'
+                        className='select select-success border border-[#3D3F45] w-full sm:w-auto bg-transparent text-white'
                     >
                         <option value='duration'>Duration</option>
                         <option value='calories'>Calories</option>
